@@ -1,0 +1,79 @@
+                                    ------------------
+                                    Overview
+                                    ------------------
+                                    James Wiltshire
+                                    ------------------
+                                    30-Jan-2007
+                                    ------------------
+
+JSON Tag Library
+
+	JSON-taglib is a {{{http://java.sun.com/products/jsp/}JSP 2.0}} tag library used to render 
+	{{{http://json.org}JSON (JavaScript Object Notation)}} data from within JSP code. 
+	It can be used as part of the server-side of an AJAX application, allowing you to 
+	use the full power of JSP to format your JSON data.
+	
+	The tag library is built on the {{{http://json.org/java}Java JSON library}} 
+	written by {{{http://crockford.com}Douglas Crockford}}.
+    
+* What is JSON?
+
+	JSON is a lightweight data interchange format. It is a text-based, human-readable format for representing 
+	data structures. JSON is a subset of the object literal notation of JavaScript and is used extensively
+	in AJAX web applications. For more information about JSON, check out {{{http://json.org}JSON.org}}
+    
+* Quick-Start
+
+	Just drop the {{{http://sourceforge.net/project/platformdownload.php?group_id=187961}json-taglib.jar}} 
+	file into the <<<WEB-INF/lib>>> directory of your web-application.  
+	
+	Here's a quick example of how the taglib could be used with an AJAX e-commerce shopping cart. Check 
+	out {{{examples.html}the examples}} or {{{tutorial.html}the tutorial}} for full details of how to use the taglib. 
+	
+	The following JSP...
+	
++-------------------------------
+<%@ taglib prefix="json" uri="http://www.atg.com/taglibs/json" %>
+
+<json:object>
+  <json:property name="itemCount" value="${cart.itemCount}"/>
+  <json:property name="subtotal" value="${cart.subtotal}"/>
+  <json:array name="items" var="item" items="${cart.lineItems}">
+    <json:object>
+      <json:property name="title" value="${item.title}"/>
+      <json:property name="description" value="${item.description}"/>
+      <json:property name="imageUrl" value="${item.imageUrl"/>
+      <json:property name="price" value="${item.price}"/>
+      <json:property name="qty" value="${item.qty}"/>
+    </json:object>
+  </json:array>
+</json:object>
++-------------------------------
+
+  ...produces this JSON...
+	
++--------------
+{
+  itemCount: 2,
+  subtotal: "$15.50",
+  items:[
+    {
+      title: "The Big Book of Foo",
+      description: "Bestselling book of Foo by A.N. Other",
+      imageUrl: "/images/books/12345.gif",
+      price: "$10.00",
+      qty: 1
+    },
+    {
+      title: "Javascript Pocket Reference",
+      description: "Handy pocket-sized reference for the Javascript language",
+      imageUrl: "/images/books/56789.gif",
+      price: "$5.50",
+      qty: 1
+    }
+  ]
+}
++--------------
+
+	Be sure to check out {{{examples.html}the examples}} or {{{tutorial.html}the tutorial}} for more information about how
+	to use the taglib.

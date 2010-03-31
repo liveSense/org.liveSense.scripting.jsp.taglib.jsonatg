@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<document>
+  <properties>
+    <title>JSON-taglib Changes</title>
+    <author email="jameswiltshire@users.sourceforge.net">
+      James Wiltshire
+    </author>
+  </properties>
+  <body>
+  
+  <release version="0.5" date="???" description="0.5 update">
+    
+  </release>
+  
+  <release version="0.4" date="2007-06-25" description="0.4 update">
+    <action dev="James Wiltshire" type="fix">
+        Removed json:data tag (was deprecated in previous release). Any usage
+        of json:data MUST now be replaced by json:object
+    </action>
+    <action dev="James Wiltshire" type="add">
+        Added an escapeXml attribute to all tags that will escape all XML special characters.
+        The default behaviour is to escape all XML characters to help prevent XSS attacks.
+        This can be disabled by setting escapeXml=false on any tag, or by setting a
+        page attribute or context-param atg.taglib.json.escapeXml=false.
+    </action>
+    <action dev="James Wiltshire" type="add">
+        Allow atg.taglib.json.prettyPrint and atg.taglib.json.escapeXml values to be set
+        using a context-param in web.xml 
+    </action>
+  </release>
+  
+  <release version="0.3" date="2007-04-19" description="0.3 update">
+      <action dev="James Wiltshire" type="add">
+        Added support for passing arrays and Maps as 
+        well as Collections to the 'items' of the json:array tag. The 'items' attribute
+        should now accept all of the same types as the c:forEach tag.
+      </action>
+      <action dev="James Wiltshire" type="add">
+        Added an 'Examples' page to the site
+      </action>
+      <action dev="James Wiltshire" type="add">
+        Allow pretty-printing to be enabled by setting a page attribute "atg.taglib.json.prettyPrint".
+      </action>
+      <action dev="James Wiltshire" type="fix" issue="1681593">
+        Allow json:array as a top level tag, along with json:object. This allows both JSON
+        objects and arrays to be serialized as per RFC 4627. Deprecated the json:data tag
+        which is no longer required.
+         Fixes SourceForge bug https://sourceforge.net/tracker/index.php?func=detail&amp;aid=1681593&amp;group_id=187961&amp;atid=923407
+      </action>
+      <action dev="James Wiltshire" type="fix">
+        Fixed bug where a List would still cause the json:array tag to render
+        the body of that tag, even if the List was empty (thanks to Stephen Drye)
+      </action>
+      <action dev="James Wiltshire" type="fix">
+        Fixed some incorrect code samples on the site (thanks to John Layton)
+      </action>
+      <action dev="James Wiltshire" type="fix" issue="1683408">
+        Renamed modified org.json package as atg.taglib.json.util so it won't cause collisions
+        with anyone who is already using Crockford's Java JSON library (thanks to qxo)
+        Fixes SourceForge bug https://sourceforge.net/tracker/index.php?func=detail&amp;aid=1683408&amp;group_id=187961&amp;atid=923407
+      </action>
+      <action dev="James Wiltshire" type="fix">
+        Fixed json.tld file so it validates in Resin.
+      </action>
+    </release>
+  
+    <release version="0.2" date="2007-02-26" description="0.2 update">
+      <action dev="James Wiltshire" type="fix">
+        Compilation of source code now uses target=1.4, source=1.4 so that
+        the generated jar can run within a container running on Java 1.4
+      </action>
+      <action dev="James Wiltshire" type="fix">
+        Fixed checks to ensure that tags are nested properly. Previously the checks were
+        too restrictive and depended on the tags having a specific parent tag. This broke things
+        when using JSP include directives or JSTL within a JSON data structure.
+      </action>
+      <action dev="James Wiltshire" type="add">
+        Created new CSS for the site
+      </action>
+      <action dev="James Wiltshire" type="add">
+        Added a 'Build Instructions' page to the site
+      </action>
+      <action dev="James Wiltshire" type="add">
+        Added changes-report to the site
+      </action>
+      <action dev="James Wiltshire" type="add">
+        Added descriptions to all attributes in tag documentation (json.tld)
+      </action>
+    </release>
+
+    <release version="0.1" date="2007-02-05"
+      description="Initial public release">
+      <action dev="James Wiltshire" type="add">
+        Created codebase for initial release.
+      </action>
+    </release>
+    
+  </body>
+</document>

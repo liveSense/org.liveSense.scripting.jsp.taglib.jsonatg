@@ -1,0 +1,51 @@
+                                    ------------------
+                                    Build Instructions
+                                    ------------------
+                                    James Wiltshire
+                                    ------------------
+                                    07-Feb-2007
+                                    ------------------
+
+How To Build
+
+ 
+* Checkout Source Code
+
+	The JSON-taglib code uses {{{http://en.wikipedia.org/wiki/Subversion_%28software%29}Subversion}} as its source control system. 
+	You need to have a Subversion client installed to checkout the source code.
+	
+	Check out the code with the following command:
+	
++--------
+$ svn checkout https://json-taglib.svn.sourceforge.net/svnroot/json-taglib/trunk json-taglib
++--------
+    
+    
+* Building
+
+** Pre-Requisites
+
+	You need {{{http://java.sun.com/j2se/1.5.0/}J2SE 5.0}} and 
+	{{{http://maven.apache.org/download.html}Maven 2}} installed to build JSON-taglib.
+	
+** Building the Code
+
+	cd into the directory you checked the source out into and execute the following command
+	
++--------
+$ mvn package
++--------	
+
+	This will compile, test and package the taglib. The resulting jar file can now be found in the <<<target>>>
+	directory.
+	
+** Building this site
+
+	To build this project website, cd into the directory you checked the source out into and execute the following command
+	
++--------
+$ mvn site
++--------	
+
+	This will build the complete site, including all project reports. 
+	The resulting site can be viewed by pointing your browser at <<<target/site/index.html>>>

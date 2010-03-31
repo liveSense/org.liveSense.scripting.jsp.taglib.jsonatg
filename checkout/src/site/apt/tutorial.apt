@@ -1,0 +1,369 @@
+                                    ------------------
+                                    Tutorial
+                                    ------------------
+                                    James Wiltshire
+                                    ------------------
+                                    30-Jan-2007
+                                    ------------------
+
+ 
+Tutorial
+
+	The JSON taglib has been designed to be as easy to use as possible. It does only one thing - 
+	renders JSON data from within a JSP. It consists of 3 simple tags that you use to define your data - 
+	<<<json:object>>>, <<<json:property>>> and <<<json:array>>>.
+	
+	Let's start with the basics...
+	
+* Setup
+
+	You need to include the taglib in your JSP. Just drop the json-taglib jar file into the <<<WEB-INF/lib>>>
+	directory of your webapp, and use the following taglib declaration at the top of your JSP
+	
++-------------------------------
+<%@ taglib prefix="json" uri="http://www.atg.com/taglibs/json" %>
++-------------------------------
+	
+	This will configure the json-taglib to use the prefix <<<json:>>> for all tags.
+	
+* JSON Objects
+	
+	The <<<json:object>>> tag is used to create JSON objects. Objects can be nested
+	as many times as you want. JSON objects contain properties, added using the <<<json:property>>> tag as described
+	above. 
+	
+	This JSP...
+
++--------------	
+<json:object>
+  <json:property name="outer" value="foo"/>
+    
+  <json:object name="inner">
+    <json:property name="innerProp1" value="val1"/>
+    <json:property name="innerProp2" value="val2"/>
+    
+    <json:object name="inner2">
+      <json:property name="inner2Prop1" value="in2p1"/>
+      <json:property name="inner2Prop2" value="in2p2"/>
+    </json:object>  
+      
+  </json:object> 
+</json:object>
++--------------
+
+	... will produce this JSON...
+	
++--------------
+{
+  "outer": "foo",
+  "inner": {
+    "innerProp1": "val1",
+    "innerProp2": "val2",
+    "inner2": {
+      "inner2Prop1": "in2p1",
+      "inner2Prop2": "in2p2"
+    }
+  }
+}
++--------------
+
+
+* JSON Properties
+
+	You use the <<<json:property>>> tag to render a JSON property. This will add a property to the data, object
+	or array tag that the <<<json:property>>> tag is nested within. 
+	
+	JSON properties are basically just name/value pairs. The name is always a string and is set with the
+	<<<name="...">>> attribute on the tag. There are a number of ways you can
+	specify the value that is set for a json property.
+	
+** Within the body of the tag. 
+	
+	* Any content that is rendered within the tag body will be assumed to be a string.
+
+	* All content will have any whitespace trimmed from the beginning and end. 
+
+	* You can override the whitespace trimming	by setting <<<trim="false">>>. 
+
+	* Any characters such as quotes, apostrophes, line breaks will be appropriately encoded.
+		
+	
+** By setting the <<<value="...">>> attribute on the tag. 
+	
+	* The same trimming and encoding rules apply as described above.
+
+	* If the value specified is a <<<Boolean>>>, then it will be converetd to a JSON boolean
+
+	* If the value specified is a number (<<<Integer, Short, Long, Double, Float>>>) then it will
+be converted to a JSON numeric value.
+
+	* If the value is a <<<String>>> it will be converted to a JSON string.
+
+	* Any other Java types that are used to set the value will have <<<toString()>>> called on them
+and they will be treated as JSON strings.
+	
+	This JSP...
+	
++--------------
+<json:object>
+  <json:property name="string1" value="this is a string"/>
+  <json:property name="string2" value="   and another string   "/>
+  <json:property name="untrimmedString" 
+                 trim="false" 
+                 value="  and an untrimmed string   " />
+  <json:property name="usingTheBody">
+    This data is in the tag body.
+    1+1 is ${1+1}
+  </json:property>
+  
+  <json:property name="bool1" value="${true}"/>
+  <json:property name="bool2" value="${false}"/>
+  
+  <json:property name="numeric1" value="${1+2}"/>
+  <json:property name="numeric2" value="${-500}"/>
+  <json:property name="numeric3" value="${123.456}"/>
+</json:object>
++--------------
+
+	... will produce this JSON...
+	
++--------------
+{
+  "string1": "this is a string",
+  "string2": "and another string",
+  "untrimmedString": "  and an untrimmed string   ",
+  "usingTheBody": "This data is in the tag body.\r\n    1+1 is 2",
+  "bool1": true,
+  "bool2": false,
+  "numeric1": 3,
+  "numeric2": -500,
+  "numeric3": 123.456
+}
++--------------
+
+* JSON Arrays
+
+	The <<<json:array>>> tag is used to create JSON arrays. A JSON array may consist of Strings, numeric values,
+	booleans, JSON objects, or further JSON arrays. There are a number of ways you can interact with the
+	<<<json:array>>> tag to create your data
+	
+** Pass a collection or array of values using the <<<items="...">>> attribute. 
+	
+	* The collection will be iterated over, and each value in the collection will be added to the JSON Array.
+	
+	* The type of the items in the collection follows the same rules as for JSON Properties, so Integers will
+	become JSON numeric, Booleans will become JSON booleans and so on.
+	
+	[]
+	
+	This JSP (let's assume we've already got some collections in <<<pageContext>>>)...
+		
++-------------
+<json:object> 
+  <json:array name="days" items="${days}"/>
+  <json:array name="bools" items="${bools}"/>
+  <json:array name="numbers" items="${numbers}"/>
+</json:object>
++-------------
+
+	...will create this JSON...
+
++-------------
+{
+  "days":["Mon","Tue","Wed","Thur","Fri","Sat","Sun"],
+  "bools":[true,false,true],
+  "numbers":[1,2,3]
+}
++-------------
+		
+** Pass a collection or array of values using the <<<items="...">>> attribute, <<and>> specify a 
+	<<<var="...">>> attribute that you then use in the tag body. 
+	
+		* When a tag body is specified, and you set a value for <<<var="...">>> then the body will
+		be invoked for each item in the collection. The <<<var>>> value will be set to the value in the collection
+		on each iteration. You can then render the data however you want in the body of the <<<json:object>>>
+		
+		[]
+		
+		This JSP...
+		
++-----------
+<json:object> 
+
+  <json:array name="array1" items="${days}" var="item">
+    ${item}
+  </json:array>
+  
+  <json:array name="array2" items="${days}" var="item">
+    day_${item}
+  </json:array>
+  
+  <json:array name="array3" items="${bools}" var="item">
+    <json:property value="${item}"/>
+  </json:array>
+  
+  <json:array name="array4" items="${numbers}" var="item">
+    <json:property value="${item}"/>
+  </json:array>
+  
+  <json:array name="array5" items="${numbers}" var="item">
+    <json:object>
+      <json:property name="id" value="${item}"/>
+      <json:property name="foo">val${item}</json:property>
+    </json:object>
+  </json:array>
+  
+</json:object>
++-----------
+
+	...will produce this JSON data...
+
++-----------
+{
+  "array1":["Mon","Tue","Wed","Thur","Fri","Sat","Sun"],
+  "array2":["day_Mon","day_Tue","day_Wed","day_Thur",
+            "day_Fri","day_Sat","day_Sun"],
+  "array3":[true,false,true],
+  "array4":[1,2,3],
+  "array5":[
+    {"id":1,"foo":"val1"},
+    {"id":2,"foo":"val2"},
+    {"id":3,"foo":"val3"}
+  ]
+}
++-----------
+		
+** Don't specify any items collection, and render the array elements individually .
+	
+		* You can render the items individually, or use JSTL and the c:forEach tag to iterate over a collection in whatever
+		way you wish within the tag, adding elements to the array.
+		
+		[]
+		
++-----------
+<json:object>
+
+  <json:array name="array1">
+    <json:property>abc</json:property>
+    <json:property>def</json:property>
+    <json:property>ghi</json:property>
+  </json:array>
+  
+  <json:array name="array2">
+    <json:property value="jkl"/>
+    <json:property value="mno"/>
+    <json:property value="pqr"/>
+  </json:array>
+  
+  <json:array name="array3">
+    <json:property value="${true}"/>
+    <json:property value="${false}"/>
+    <json:property value="${true}"/>
+  </json:array>
+  
+  <json:array name="array4">
+    <json:property value="${1}"/>
+    <json:property value="${2}"/>
+    <json:property value="${3}"/>
+  </json:array>  
+  
+  <json:array name="emptyArray">
+  </json:array>  
+  
+</json:object>
++----------
+
+	...creates this JSON...
+
++----------
+{
+  "array1":["abc","def","ghi"],
+  "array2":["jkl","mno","pqr"],
+  "array3":[true,false,true],
+  "array4":[1,2,3],
+  "emptyArray":[]
+}
++----------
+
+* Pretty Printing
+
+	You  can specify whether you want to pretty-print (use nice formatting and indentation) the JSON
+	data that is produced to aid with debugging. By default this setting is off, and all JSON data will be rendered without any
+	extraneous whitespace. There are a few ways you can turn on	pretty-printing...
+	
+** By setting <<<prettyPrint="true">>> on the json:object or json:array tag.
+
++-----------
+<json:object prettyPrint="true">
+  ...
+</json:object>
+
+or
+
+<json:array prettyPrint="true">
+  ...
+</json:array>
++----------
+
+** By setting a page, request, session or application attribute <<<atg.taglib.json.prettyPrint>>> to
+	either true or false.
+	
+	Any value set by the <<<atg.taglib.json.prettyPrint>>> attribute can be overriden by 
+	setting <<<prettyPrint="false">>> on the json:object or json:array tag.
+
++-----------
+<c:set var="atg.taglib.json.prettyPrint" value="${true}" scope="application"/>
+<json:object>
+  ...
+</json:object>
++----------
+
+** By setting a context-parm in your web-app's web.xml file.
+	
+	Any value set using a context-param can be overriden by either of the previous 2 methods 
+	(using a page attribute or using the <<<prettyPrint>>> tag attribute)
+
++-----------
+<context-param>
+  <param-name>atg.taglib.json.prettyPrint</param-name>
+  <param-value>true</param-value>
+</context-param>
++----------
+
+
+* XML Escaping
+
+	You  can specify whether you want any text content to be XML-escaped. This is important to prevent
+	Cross-Site Request Forgery attacks. The default behavior is to XML-escape all text content similar
+	to the behavior of the c:out JSTL tag. The XML-escaping can be easily overriden by any of the 
+	following methods:
+	
+** By setting <<<escapeXml="false">>> on any json: tag. This setting will be applied to all child tags.
+
++-----------
+<json:object escapeXml="false">
+  ...
+</json:object>
++----------
+
+** By setting a page, request, session or application attribute <<<atg.taglib.json.escapeXml>>> to
+	either true or false.
+	
+	Any value set by the <<<atg.taglib.json.escapeXml>>> attribute can be overriden by 
+	setting <<<escapeXml="false">>> on any json: tag.
+
++-----------
+<c:set var="atg.taglib.json.escapeXml" value="${false}" scope="application"/>
++----------
+
+** By setting a context-parm in your web-app's web.xml file.
+	
+	Any value set using a context-param can be overriden by either of the previous 2 methods 
+	(using a page attribute or using the <<<escapeXml>>> tag attribute)
+
++-----------
+<context-param>
+  <param-name>atg.taglib.json.escapeXml</param-name>
+  <param-value>false</param-value>
+</context-param>
++----------

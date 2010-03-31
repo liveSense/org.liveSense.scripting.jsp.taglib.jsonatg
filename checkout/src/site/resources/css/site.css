@@ -1,0 +1,142 @@
+body {
+  color: #333333;
+  font-family: Helvetica, Arial, Verdana, sans-serif;
+  font-size: 100%;
+  font-size-adjust: none;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: normal;
+  line-height: 1.45;
+}
+
+strong {
+  color: #cc0000;
+  font-weight: normal;
+}
+
+a {
+  font-weight: normal;
+}
+
+a:visited {
+  border-bottom: none;
+}
+
+a:hover {
+  border-bottom: 1px solid #4477aa;
+}
+
+h1 {
+  background-color: #ffffff;
+  border: none;
+  font-family: Helvetica, Arial, Verdana, sans-serif;
+  font-size: 24pt;
+  font-size-adjust: none;
+  font-stretch: normal;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: normal;
+  letter-spacing: -1px;
+  line-height: 28pt;
+  margin-bottom: 25px;
+  margin-top: 30px;;
+  font-family: Helvetica, Arial, Verdana, sans-serif;
+}
+
+h2 {
+  background-color: #ffffff;
+  border: none;
+  border-bottom: 1px solid #e0e0e0;
+  color: #333;
+  font-weight: normal;
+  font: 18pt/ 1.45 Helvetica, Arial, Verdana, sans-serif;
+  letter-spacing: -1px;
+  margin-top: 30px;
+  margin-bottom: 25px;;
+  color: #333;
+}
+
+h3 {
+  background-color: #ffffff;
+  border: none;
+  border-bottom: 1px solid #eeeeee;
+  color: #333;
+  font-size: 1em/ 1.45;
+  font-weight: bold;
+}
+
+h4 {
+  background-color: #ffffff;
+  border: none;
+  font: 80%/ 140% Helvetica, Arial, Verdana, sans-serif;
+  color: #666;
+  font-weight: bold;
+}
+
+h4 tt {
+  font-size: 1.4em;
+  font-weight: normal;
+}
+
+p {
+  margin: 0;
+  padding-bottom: 8px;
+}
+
+li {
+  font-family: Helvetica, Arial, Verdana, sans-serif;
+}
+
+#leftColumn {
+  margin: 10px 15px 0pt 5px;
+  float: right;
+  width: 240px;
+}
+
+#bodyColumn {
+  margin-left: 20px;
+  margin-right: 1.5em;
+  width: 600px;
+}
+
+.source {
+  background-color: #F6F6F6;
+  border: 1px solid #CCCCCC;
+  font-size: 0.9em;
+}
+
+#navcolumn li strong {
+  color: #336699;
+  font-weight: bold;
+}
+
+#navcolumn li {
+  font-size: 0.9em;
+  line-height: 1.5em;
+}
+
+#navcolumn h5 {
+  margin-bottom: 8px;
+  color: #333;
+}
+
+#navcolumn ul {
+  padding-bottom: 8px;
+}
+
+#banner {
+  padding: 10px 0px 15px 10px;
+}
+
+#bannerRight img {
+  padding: 10px 10px 0px 0px;
+}
+
+#breadcrumbs {
+  font-size: 0.7em;
+  background-color: #EEEEEE;
+}
+
+table.bodyTable th,table.bodyTable td {
+  font-size: 0.8em;
+}

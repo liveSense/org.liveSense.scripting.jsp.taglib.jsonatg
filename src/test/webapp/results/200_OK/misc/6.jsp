@@ -1,0 +1,9 @@
+{
+  escaped:"&lt;&gt;",
+  nested1:{
+    notEscaped:"<>",
+    nested2:{
+      escaped:"&lt;&gt;",
+      nested3:{
+        notEscaped:"<>"}}}
+}

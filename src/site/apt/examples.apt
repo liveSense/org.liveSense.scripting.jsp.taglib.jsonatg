@@ -1,0 +1,99 @@
+                                    ------------------
+                                    Examples
+                                    ------------------
+                                    James Wiltshire
+                                    ------------------
+                                    04-March-2007
+                                    ------------------
+
+ 
+Examples
+
+	This section shows some code examples of how the json-taglib could be used in real world
+	situations.
+	
+* Shopping Cart
+
+	You need to add AJAX functionality to an e-commerce application. Whenever the user adds an item
+	to their cart, you want to render the new contents of the cart as JSON, so the browser can
+	update the cart display dynamically.
+	
+	Assume you have a <<<cart>>> object that contains, amongst other things, a collection of 
+	<<<lineItems>>>. 
+	
++-------------------------------
+<%@ taglib prefix="json" uri="http://www.atg.com/taglibs/json" %>
+
+<json:object>
+  <json:property name="itemCount" value="${cart.itemCount}"/>
+  <json:property name="subtotal" value="${cart.subtotal}"/>
+  <json:array name="items" var="item" items="${cart.lineItems}">
+    <json:object>
+      <json:property name="title" value="${item.title}"/>
+      <json:property name="description" value="${item.description}"/>
+      <json:property name="imageUrl" value="${item.imageUrl"/>
+      <json:property name="price" value="${item.price}"/>
+      <json:property name="qty" value="${item.qty}"/>
+    </json:object>
+  </json:array>
+</json:object>
++-------------------------------
+
+  ...produces this JSON...
+	
++--------------
+{
+  itemCount: 2,
+  subtotal: "$15.50",
+  items:[
+    {
+      title: "The Big Book of Foo",
+      description: "Bestselling book of Foo by A.N. Other",
+      imageUrl: "/images/books/12345.gif",
+      price: "$10.00",
+      qty: 1
+    },
+    {
+      title: "Javascript Pocket Reference",
+      description: "Handy pocket-sized reference for the Javascript language",
+      imageUrl: "/images/books/56789.gif",
+      price: "$5.50",
+      qty: 1
+    }
+  ]
+}
++--------------
+	
+	
+* Shopping Cart (part 2)
+
+	The above example was quite simplistic. If your e-commerce store supported multiple languages and
+	currencies, then it is likely that you would want to show your pricing data using the 
+	correct format for that locale.
+	
+	Here we'll add the JSTL Format tag to render the prices using the appropriate currency formatting.
+
++-------------------------------
+<%@ taglib prefix="json" uri="http://www.atg.com/taglibs/json" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+<json:object>
+  <json:property name="itemCount" value="${cart.itemCount}"/>
+  <json:property name="subtotal">
+    <fmt:formatNumber value="${cart.subtotal}" type="currency" currencyCode="${cart.currency}"/>
+  </json:property>
+  <json:array name="items" var="item" items="${cart.lineItems}">
+    <json:object>
+      <json:property name="title" value="${item.title}"/>
+      <json:property name="description" value="${item.description}"/>
+      <json:property name="imageUrl" value="${item.imageUrl"/>
+      <json:property name="price">
+        <fmt:formatNumber value="${item.price}" type="currency" currencyCode="${cart.currency}"/>
+      </json:property>
+      <json:property name="qty" value="${item.qty}"/>
+    </json:object>
+  </json:array>
+</json:object>
++-------------------------------
+
+

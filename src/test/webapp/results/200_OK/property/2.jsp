@@ -1,0 +1,9 @@
+{
+  "boolT":true,
+  "boolF":false,
+  "string1":"true",
+  "string2":"false",
+  "numeric1":3,
+  "numeric2":-500,
+  "numeric3":123.456
+}
