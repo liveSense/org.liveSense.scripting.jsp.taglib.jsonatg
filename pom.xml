@@ -223,7 +223,7 @@
                 <configuration>
                     <instructions>
                         <Export-Package>
-                            atg.taglib.json.*;version=0.5-SNAPSHOT
+                            atg.taglib.json.*;version=${pom.version}
                         </Export-Package>
                         <Import-Package>
                             *
