@@ -311,8 +311,9 @@
         <dependency>
             <groupId>commons-httpclient</groupId>
             <artifactId>commons-httpclient</artifactId>
-            <version>3.0.1</version>
+            <version>3.1-rc1</version>
             <scope>test</scope>
+            <type>jar</type>
         </dependency>
 
     </dependencies>
@@ -418,3 +419,4 @@
 		</profile>
 	</profiles>
 </project>
+
