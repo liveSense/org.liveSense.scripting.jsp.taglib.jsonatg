@@ -24,7 +24,7 @@
     <artifactId>org.liveSense.scripting.jsp.taglib.json</artifactId>
     <packaging>bundle</packaging>
 
-    <version>0.5-SNAPSHOT</version>
+    <version>1.0.0</version>
     <name>liveSense JSON taglib</name>
     <url>http://json-taglib.sourceforge.net</url>
     <description>
