@@ -1,6 +1,9 @@
 .svn
-/target/*
-/war/*
+/target
+/war
+/checkout/.settings
+/checkout/.project
+/checkout/.classpath
 /.settings
 /.project
 /.classpath
