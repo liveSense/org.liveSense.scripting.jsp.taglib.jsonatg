@@ -260,7 +260,7 @@
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>servlet-api</artifactId>
-            <version>2.4</version>
+            <version>2.5</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
@@ -273,26 +273,26 @@
         <dependency>
             <groupId>org.mortbay.jetty</groupId>
             <artifactId>jetty</artifactId>
-            <version>6.1.0</version>
+            <version>6.1.16</version>
             <scope>test</scope>
         </dependency>
 
         <dependency>
             <groupId>tomcat</groupId>
             <artifactId>jasper-compiler</artifactId>
-            <version>5.5.12</version>
+            <version>5.5.15</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>tomcat</groupId>
             <artifactId>jasper-compiler-jdt</artifactId>
-            <version>5.5.12</version>
+            <version>5.5.15</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>tomcat</groupId>
             <artifactId>jasper-runtime</artifactId>
-            <version>5.5.12</version>
+            <version>5.5.15</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -304,13 +304,13 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.1</version>
+            <version>4.8.2</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>commons-httpclient</groupId>
             <artifactId>commons-httpclient</artifactId>
-            <version>3.1-rc1</version>
+            <version>3.1</version>
             <scope>test</scope>
             <type>jar</type>
         </dependency>
