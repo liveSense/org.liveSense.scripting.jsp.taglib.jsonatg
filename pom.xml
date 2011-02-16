@@ -20,6 +20,17 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
+  <parent>
+      <groupId>org.liveSense</groupId>
+      <artifactId>org.liveSense.parent</artifactId>
+      <version>1-SNAPSHOT</version>
+  </parent>
+  <scm>
+      <connection>scm:git:git://github.com/liveSense/org.liveSense.scripting.jsp.taglib.jso</connection>
+      <developerConnection>scm:git:git://github.com/liveSense/org.liveSense.scripting.jsp.taglib.jso</developerConnection>
+      <url>https://github.com/liveSense/org.liveSense.scripting.jsp.taglib.jso</url>
+  </scm>  
+
     <groupId>org.liveSense</groupId>
     <artifactId>org.liveSense.scripting.jsp.taglib.json</artifactId>
     <packaging>bundle</packaging>
@@ -34,11 +45,13 @@
         full power of JSP to format your JSON data.
     </description>
 
+	<!--
     <scm>
         <connection>scm:svn:https://json-taglib.svn.sourceforge.net/svnroot/json-taglib/trunk</connection>
         <url>http://json-taglib.svn.sourceforge.net/viewvc/json-taglib/trunk</url>
     </scm>
-
+	-->
+	
     <developers>
         <developer>
             <id>jameswiltshire</id>
@@ -273,7 +286,7 @@
         <dependency>
             <groupId>org.mortbay.jetty</groupId>
             <artifactId>jetty</artifactId>
-            <version>6.1.16</version>
+            <version>6.1.26</version>
             <scope>test</scope>
         </dependency>
 
