@@ -34,6 +34,7 @@
     <groupId>org.liveSense</groupId>
     <artifactId>org.liveSense.scripting.jsp.taglib.json</artifactId>
     <packaging>bundle</packaging>
+    
 
     <version>1.0.1-SNAPSHOT</version>
     <name>liveSense JSON taglib</name>
@@ -236,7 +237,7 @@
                 <configuration>
                     <instructions>
                         <Export-Package>
-                            atg.taglib.json.*;version=${pom.version}
+                            atg.taglib.json.*;version=${project.version}
                         </Export-Package>
                         <Import-Package>
                             *
@@ -335,6 +336,7 @@
             <plugin>
                 <groupId>net.sourceforge.maven-taglib</groupId>
                 <artifactId>maven-taglib-plugin</artifactId>
+                <version>2.4</version>
             </plugin>
 
             <plugin>
@@ -345,17 +347,21 @@
             </plugin>
             <plugin>
                 <artifactId>maven-pmd-plugin</artifactId>
+                <version>1.10</version>
             </plugin>
             <plugin>
                 <artifactId>maven-project-info-reports-plugin</artifactId>
+                <version>2.4</version>
             </plugin>
 
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>jdepend-maven-plugin</artifactId>
+                <version>2.0-beta-2</version>
             </plugin>
             <plugin>
                 <artifactId>maven-jxr-plugin</artifactId>
+                <version>1.5</version>
             </plugin>
             <plugin>
                 <artifactId>maven-surefire-report-plugin</artifactId>
