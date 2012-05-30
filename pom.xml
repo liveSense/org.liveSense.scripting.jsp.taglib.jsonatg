@@ -36,7 +36,7 @@
     
 
     <version>1.0.1-SNAPSHOT</version>
-    <name>liveSense JSON taglib</name>
+    <name>liveSense :: Scripting :: JSON taglib</name>
     <url>http://json-taglib.sourceforge.net</url>
     <description>
         JSON-taglib is a JSP tag library used to render JSON (JavaScript
