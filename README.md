@@ -8,11 +8,13 @@ JSON-taglib is a JSP tag library used to render JSON (JavaScript Object Notation
 * atg.taglib.json.util(1.0.1.SNAPSHOT)
 
 ## OSGi Dependencies
-* __Apache Felix Http Jetty - org.apache.felix.http.jetty (2.2.0)__
-	* javax.servlet
-* __Apache Sling Scripting JSP Support - org.apache.sling.scripting.jsp (2.0.24)__
+* __OPS4J Pax Web - Jsp Support - org.ops4j.pax.web.pax-web-jsp (3.0.0.M3)__
+	* javax.servlet.jsp
 	* javax.servlet.jsp
 	* javax.servlet.jsp.tagext
+* __Servlet 3.0 - org.apache.geronimo.specs.geronimo-servlet_3.0_spec (1.0)__
+	* javax.servlet
+	* javax.servlet
 
 ## OSGi Embedded JARs
 
