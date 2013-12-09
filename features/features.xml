@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <features name="liveSense-${liveSense.version}-scripting-jsp-taglib-jsonatg" xmlns="http://karaf.apache.org/xmlns/features/v1.0.0">
-	<feature name="liveSense-scripting-jsp-taglib-jsonatgatg" version="${liveSense.scripting.jsp.taglib.jsonatg.version}" description="liveSense scripting jsp taglib json atg">
+	<feature name="liveSense-scripting-jsp-taglib-jsonatg" version="${liveSense.scripting.jsp.taglib.jsonatg.version}" description="liveSense scripting jsp taglib json atg">
 		<bundle>mvn:com.github.livesense/org.liveSense.scripting.jsp.taglib.jsonatg/${liveSense.scripting.jsp.taglib.jsonatg.version}</bundle>
 	</feature>
 </features>
