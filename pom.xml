@@ -23,9 +23,11 @@
   <parent>
       <groupId>com.github.livesense</groupId>
       <artifactId>org.liveSense.parent</artifactId>
-      <version>2-SNAPSHOT</version>
+      <version>1.0.3</version>
 		<relativePath>..</relativePath>
   </parent>
+  <version>1.0.3-SNAPSHOT</version>
+
 	<scm>
 		<connection>scm:git:https://github.com/liveSense/org.liveSense.scripting.jsp.taglib.jsonatg.git</connection>
 		<developerConnection>scm:git:https://github.com/liveSense/org.liveSense.scripting.jsp.taglib.jsonatg.git</developerConnection>
@@ -34,9 +36,6 @@
 
     <artifactId>org.liveSense.scripting.jsp.taglib.jsonatg</artifactId>
     <packaging>bundle</packaging>
-    
-
-    <version>1.0.1-SNAPSHOT</version>
     <name>liveSense :: Scripting :: JSON taglib</name>
     <url>http://json-taglib.sourceforge.net</url>
     <description>
